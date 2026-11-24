@@ -5,18 +5,13 @@ import type { Habitacion } from '../data/habitaciones';
 interface Props { hab: Habitacion; }
 const { hab } = Astro.props;
 const url = whatsapp(MENSAJES.habitacion(hab.nombre));
+const titulo = hab.ambientesTitulo;
 ---
-<section class="section" id={hab.slug} aria-labelledby={`${hab.slug}-h`} style="--hm: 2">
+<section class="section" id="ambientes" aria-labelledby="ambientes-h" style="--hm: 2">
   <div class="wrap">
     <div class="head-row">
-      <div class="stack-3">
-        <h2 id={`${hab.slug}-h`}>{hab.nombre}</h2>
-        <p class="muted">{hab.datos}</p>
-      </div>
-      <div class="stack-3">
-        <p>{hab.texto}</p>
-        <p><a class="link" href={url} target="_blank" rel="noopener">Consultar esta habitación</a></p>
-      </div>
+      <h2 id="ambientes-h">{titulo}</h2>
+      <p>{hab.texto}</p>
     </div>
     <div class="grid ambientes">
       {hab.ambientes.map((a) => (

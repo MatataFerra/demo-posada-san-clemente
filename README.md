@@ -16,7 +16,8 @@ Sitio demo de portfolio: una posada **ficticia** frente al mar en San Clemente d
 | Ruta | Contenido |
 |---|---|
 | `/` | Hero, ubicación y recepción, habitaciones, desayuno |
-| `/habitaciones` | Los 3 tipos de habitación con su botón de WhatsApp, qué incluye la estadía |
+| `/habitaciones` | Los 3 tipos de habitación y qué incluye la estadía |
+| `/habitaciones/[id]` | Página propia de cada habitación (`doble`, `familiar`, `suite`): ambientes, fotos, vista, ficha y otras habitaciones. Datos en `src/data/habitaciones.ts` |
 | `/la-zona` | Playa y médanos, lugares cercanos, cómo llegar y preguntas frecuentes |
 | `/creditos` | Autores y licencias de las fotos |
 
@@ -36,6 +37,8 @@ npm run dev      # http://localhost:4321
 npm run build    # genera dist/
 npm run preview
 ```
+
+En Vercel, `vercel.json` activa `cleanUrls` para servir `/habitaciones/doble` sin `.html`.
 
 ## Fotos
 

@@ -16,7 +16,7 @@ const { actual } = Astro.props;
         <div class="nav__menu">
           <div class="wrap grid">
             {HABITACIONES.map((h) => (
-              <a class="menu-card span-4" href={`/habitaciones#${h.slug}`}>
+              <a class="menu-card span-4" href={`/habitaciones/${h.slug}`}>
                 <div class="panel"><Foto foto={h.foto} class="frame__img" sizes="384px" /></div>
                 <span class="t-card">{h.nombre}</span>
                 <span class="t-small muted">{h.datos}</span>

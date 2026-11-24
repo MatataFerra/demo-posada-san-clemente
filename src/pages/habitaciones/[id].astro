@@ -1,0 +1,107 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Foto from '../../components/Foto.astro';
+import SeccionHabitacion from '../../components/SeccionHabitacion.astro';
+import { HABITACIONES, CONDICIONES, type Habitacion } from '../../data/habitaciones';
+import { whatsapp, MENSAJES } from '../../config/site';
+
+export function getStaticPaths() {
+  return HABITACIONES.map((hab) => ({ params: { id: hab.slug }, props: { hab } }));
+}
+interface Props { hab: Habitacion; }
+const { hab } = Astro.props;
+const mensaje = MENSAJES.habitacion(hab.nombre);
+const otras = HABITACIONES.filter((h) => h.slug !== hab.slug);
+const tamanosGaleria = [
+  '(max-width: 639px) 100vw, (max-width: 1023px) 100vw, 600px',
+  '(max-width: 639px) 50vw, (max-width: 1023px) 100vw, 600px',
+  '(max-width: 639px) 50vw, (max-width: 1023px) 100vw, 600px',
+];
+---
+<Base
+  titulo={`${hab.nombre}: Posada La Ría, San Clemente del Tuyú`}
+  descripcion={`${hab.nombre} en Posada La Ría: ${hab.datos}. Desayuno incluido, a 80 metros de la playa. Consultá disponibilidad por WhatsApp.`}
+  actual="habitaciones"
+  ogImagen={`/og/hab-${hab.slug}.jpg`}
+  mensaje={mensaje}
+>
+  <Hero foto={hab.foto} titulo={hab.titulo} bajada={hab.bajada} mensaje={mensaje} />
+
+  <SeccionHabitacion hab={hab} />
+
+  <section class="section" id="fotos" aria-labelledby="fotos-h">
+    <div class="wrap">
+      <div class="head-row">
+        <h2 id="fotos-h">Detalles de la habitación</h2>
+        <p>Ropa de cama de algodón, mantas de lana para las noches frescas y desayuno casero incluido.</p>
+      </div>
+      <div class="grid trio">
+        {hab.galeria.map((f, i) => (
+          <a class="ph" href={whatsapp(mensaje)} target="_blank" rel="noopener" aria-label={`Consultar ${hab.nombre} por WhatsApp`}>
+            <Foto foto={f} sizes={tamanosGaleria[i]} />
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="vista" aria-labelledby="vista-h">
+    <div class="wrap">
+      <div class="head-row">
+        <h2 id="vista-h">{hab.vista.titulo}</h2>
+        <p>{hab.vista.texto}</p>
+      </div>
+      <div class="grid pair">
+        {hab.vista.fotos.map((f) => (
+          <a class="ph" href="/la-zona" aria-label="Ver qué hay en la zona"><Foto foto={f} /></a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="ficha" aria-labelledby="ficha-h" style="--hm: 2">
+    <div class="wrap">
+      <div class="section-head"><h2 id="ficha-h">Ficha de la habitación</h2></div>
+      <div class="grid grid--top ficha">
+        <div class="span-4 stack-4">
+          <h3 class="ambiente__nombre">Datos</h3>
+          <ul class="rows">
+            {hab.ficha.map(([k, v]) => <li><span class="rows__name">{k}</span><span class="rows__value">{v}</span></li>)}
+          </ul>
+        </div>
+        <div class="span-4 stack-4">
+          <h3 class="ambiente__nombre">Equipamiento</h3>
+          <ul class="rows">
+            {hab.equipamiento.map((e) => <li><span class="rows__name">{e}</span></li>)}
+          </ul>
+        </div>
+        <div class="span-4 stack-4">
+          <h3 class="ambiente__nombre">Condiciones</h3>
+          <ul class="rows">
+            {CONDICIONES.map(([k, v]) => <li><span class="rows__name">{k}</span><span class="rows__value">{v}</span></li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="otras" aria-labelledby="otras-h">
+    <div class="wrap">
+      <div class="head-row">
+        <h2 id="otras-h">Otras habitaciones</h2>
+        <p><a class="link" href="/habitaciones">Ver todas</a></p>
+      </div>
+      <div class="grid rooms rooms--dos">
+        {otras.map((h) => (
+          <a class="tile" href={`/habitaciones/${h.slug}`}>
+            <div class="tile__media"><Foto foto={h.foto} sizes="(max-width: 1023px) 100vw, 588px" /></div>
+            <div class="tile__head"><h3>{h.nombre}</h3></div>
+            <p class="tile__facts">{h.datos}</p>
+            <span class="link-like">Ver la habitación</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

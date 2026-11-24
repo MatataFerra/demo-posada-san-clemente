@@ -94,3 +94,24 @@ a.ph:hover > img, a:hover > .ph > img { transform: scale(1.03); }
   .ambiente__foto { aspect-ratio: 1; }
   .rooms .tile__media { --tile-ratio: 3 / 2; }
 }
+
+/* Página de habitación: otras habitaciones de a dos, ficha en dos columnas */
+.rooms--dos > .tile { grid-column: span 6; }
+.rooms--dos .tile__media { --tile-ratio: 16 / 9; }
+@media (max-width: 639px) { .rooms--dos > .tile { grid-column: 1 / -1; } }
+.ficha .ambiente__nombre { margin: 0; }
+.ficha .rows > li { min-height: 40px; }
+@media (min-width: 640px) and (max-width: 1023px) {
+  .ficha > .span-4 { grid-column: span 6; }
+  .ficha > .span-4:last-child { grid-column: 1 / -1; }
+  .ficha > .span-4:last-child .rows { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap, 24px); }
+  .rooms--dos .tile__media { --tile-ratio: 3 / 4; }
+}
+@media (max-width: 639px) { .ficha > .span-4 { grid-column: 1 / -1; } }
+
+@media (max-width: 639px) {
+  .rooms--dos > .tile { grid-column: span 6; }
+  .rooms--dos .tile__media { --tile-ratio: 4 / 5; }
+  .rooms--dos .tile__head > h3 { font-size: 16px; }
+  .rooms--dos .tile__facts { display: none; }
+}

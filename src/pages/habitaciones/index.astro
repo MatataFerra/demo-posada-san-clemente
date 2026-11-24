@@ -1,11 +1,10 @@
 ---
-import Base from '../layouts/Base.astro';
-import Hero from '../components/Hero.astro';
-import Foto from '../components/Foto.astro';
-import SeccionHabitacion from '../components/SeccionHabitacion.astro';
-import { FOTOS } from '../data/fotos';
-import { HABITACIONES } from '../data/habitaciones';
-import { whatsapp, MENSAJES } from '../config/site';
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Foto from '../../components/Foto.astro';
+import { FOTOS } from '../../data/fotos';
+import { HABITACIONES } from '../../data/habitaciones';
+import { whatsapp, MENSAJES } from '../../config/site';
 ---
 <Base
   titulo="Habitaciones: Posada La Ría, San Clemente del Tuyú"
@@ -27,7 +26,7 @@ import { whatsapp, MENSAJES } from '../config/site';
       </div>
       <div class="grid rooms">
         {HABITACIONES.map((h) => (
-          <a class="tile" href={`#${h.slug}`}>
+          <a class="tile" href={`/habitaciones/${h.slug}`}>
             <div class="tile__media"><Foto foto={h.foto} sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 384px" /></div>
             <div class="tile__head"><h3>{h.nombre}</h3></div>
             <p class="tile__facts">{h.datos}</p>
@@ -38,8 +37,6 @@ import { whatsapp, MENSAJES } from '../config/site';
       </div>
     </div>
   </section>
-
-  {HABITACIONES.map((h) => <SeccionHabitacion hab={h} />)}
 
   <section class="section" id="incluye" aria-labelledby="inc-h">
     <div class="wrap">
