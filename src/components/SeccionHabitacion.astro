@@ -1,10 +1,8 @@
 ---
 import Foto from './Foto.astro';
-import { whatsapp, MENSAJES } from '../config/site';
 import type { Habitacion } from '../data/habitaciones';
 interface Props { hab: Habitacion; }
 const { hab } = Astro.props;
-const url = whatsapp(MENSAJES.habitacion(hab.nombre));
 const titulo = hab.ambientesTitulo;
 ---
 <section class="section" id="ambientes" aria-labelledby="ambientes-h" style="--hm: 2">
@@ -16,9 +14,9 @@ const titulo = hab.ambientesTitulo;
     <div class="grid ambientes">
       {hab.ambientes.map((a) => (
         <div class="ambiente">
-          <a class="ph ambiente__foto" href={url} target="_blank" rel="noopener" aria-label={`Consultar ${hab.nombre} por WhatsApp`}>
+          <div class="ph ambiente__foto">
             <Foto foto={a.foto} sizes="(max-width: 1023px) 100vw, 588px" />
-          </a>
+          </div>
           <h3 class="t-label ambiente__nombre">{a.nombre}</h3>
           <ul class="rows">
             {a.detalles.map(([k, v]) => (

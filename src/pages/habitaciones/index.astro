@@ -4,7 +4,6 @@ import Hero from '../../components/Hero.astro';
 import Foto from '../../components/Foto.astro';
 import { FOTOS } from '../../data/fotos';
 import { HABITACIONES } from '../../data/habitaciones';
-import { whatsapp, MENSAJES } from '../../config/site';
 ---
 <Base
   titulo="Habitaciones: Posada La Ría, San Clemente del Tuyú"
@@ -52,9 +51,9 @@ import { whatsapp, MENSAJES } from '../../config/site';
             <li><span class="rows__name">Sombrilla y reposeras</span><span class="rows__value">Se piden en recepción</span></li>
           </ul>
         </div>
-        <a class="ph split-photo span-6 start-7" href={whatsapp(MENSAJES.general)} target="_blank" rel="noopener" aria-label="Consultar disponibilidad por WhatsApp">
+        <div class="ph split-photo span-6 start-7">
           <Foto foto={FOTOS.mantas} />
-        </a>
+        </div>
       </div>
     </div>
   </section>

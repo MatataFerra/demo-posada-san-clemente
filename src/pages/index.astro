@@ -40,9 +40,9 @@ import { NEGOCIO } from '../config/site';
             <li><span>Cochera cubierta</span><span>6 lugares, a consultar</span></li>
           </ul>
         </div>
-        <a class="ph visit-photo span-6 start-7" href="/la-zona" aria-label="Ver qué hay en la zona">
+        <div class="ph visit-photo span-6 start-7">
           <Foto foto={FOTOS.playa} />
-        </a>
+        </div>
       </div>
     </div>
   </section>
@@ -59,13 +59,13 @@ import { NEGOCIO } from '../config/site';
             ))}
           </ul>
           <p><a class="link" href="/habitaciones">Ver las habitaciones</a></p>
-          <a class="ph ts__small" href="/habitaciones/doble" aria-label="Ver la habitación doble con vista al mar">
+          <div class="ph ts__small">
             <Foto foto={FOTOS.almohada} sizes="(max-width: 1023px) 100vw, 600px" />
-          </a>
+          </div>
         </div>
-        <a class="ph ts__tall" href="/habitaciones/familiar" aria-label="Ver la habitación familiar">
+        <div class="ph ts__tall">
           <Foto foto={FOTOS.sabanas} sizes="(max-width: 1023px) 100vw, 900px" />
-        </a>
+        </div>
       </div>
     </div>
   </section>
@@ -77,9 +77,9 @@ import { NEGOCIO } from '../config/site';
         <p>Pan del día, granola hecha acá, fruta y café de filtro. Incluido en todas las tarifas. <a class="link" href="/habitaciones#incluye">Ver qué incluye</a></p>
       </div>
       <div class="grid trio">
-        <a class="ph" href="/habitaciones#incluye" aria-label="Ver qué incluye la estadía"><Foto foto={FOTOS.pan} sizes="(max-width: 639px) 100vw, (max-width: 1023px) 60vw, 486px" /></a>
-        <a class="ph" href="/habitaciones#incluye" aria-label="Ver qué incluye la estadía"><Foto foto={FOTOS.granola} sizes="(max-width: 639px) 50vw, (max-width: 1023px) 60vw, 384px" /></a>
-        <a class="ph" href="/habitaciones#incluye" aria-label="Ver qué incluye la estadía"><Foto foto={FOTOS.lampara} sizes="(max-width: 639px) 50vw, (max-width: 1023px) 60vw, 384px" /></a>
+        <div class="ph"><Foto foto={FOTOS.pan} sizes="(max-width: 639px) 100vw, (max-width: 1023px) 60vw, 486px" /></div>
+        <div class="ph"><Foto foto={FOTOS.granola} sizes="(max-width: 639px) 50vw, (max-width: 1023px) 60vw, 384px" /></div>
+        <div class="ph"><Foto foto={FOTOS.lampara} sizes="(max-width: 639px) 50vw, (max-width: 1023px) 60vw, 384px" /></div>
       </div>
     </div>
   </section>

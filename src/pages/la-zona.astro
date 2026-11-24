@@ -33,8 +33,8 @@ const preguntas = [
         <p>Playa ancha de arena fina, médanos con tamariscos y el sol que sale del mar.</p>
       </div>
       <div class="grid pair">
-        <a class="ph" href="#cerca" aria-label="Ver lugares cercanos"><Foto foto={FOTOS.tamariscos} /></a>
-        <a class="ph" href="#cerca" aria-label="Ver lugares cercanos"><Foto foto={FOTOS.dunas} /></a>
+        <div class="ph"><Foto foto={FOTOS.tamariscos} /></div>
+        <div class="ph"><Foto foto={FOTOS.dunas} /></div>
       </div>
     </div>
   </section>
@@ -53,9 +53,9 @@ const preguntas = [
           </ul>
           <p><a class="link" href={NEGOCIO.mapa} target="_blank" rel="noopener">Ver en el mapa</a></p>
         </div>
-        <a class="ph split-photo span-6 start-7" href={NEGOCIO.mapa} target="_blank" rel="noopener" aria-label="Ver San Clemente en el mapa">
+        <div class="ph split-photo span-6 start-7">
           <Foto foto={FOTOS.playa} />
-        </a>
+        </div>
       </div>
     </div>
   </section>
@@ -67,7 +67,7 @@ const preguntas = [
           <h2 id="faq-h">Preguntas frecuentes</h2>
           <p class="muted">¿Otra duda? Escribinos y te respondemos en el día.</p>
           <p><a class="link" href={whatsapp(MENSAJES.zona)} target="_blank" rel="noopener">Escribir por WhatsApp</a></p>
-          <a class="ph faq-photo" href={whatsapp(MENSAJES.zona)} target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><Foto foto={FOTOS.amanecer} /></a>
+          <div class="ph faq-photo"><Foto foto={FOTOS.amanecer} /></div>
         </div>
         <div class="faq span-6 start-7">
           {preguntas.map((q) => (

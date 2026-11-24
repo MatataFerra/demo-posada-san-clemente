@@ -10,7 +10,7 @@
 /* Foto en un marco con zoom al pasar el puntero */
 .ph { position: relative; display: block; min-width: 0; min-height: 0; overflow: clip; margin: 0; background: var(--surface); }
 .ph > img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 600ms var(--ease); }
-a.ph:hover > img, a:hover > .ph > img { transform: scale(1.03); }
+a:hover > .ph > img { transform: scale(1.03); }
 
 .head-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap, 24px); row-gap: var(--s-4); align-items: end; margin-bottom: var(--s-7); }
 .head-row h2, .head-row p { margin: 0; }
