@@ -1,0 +1,15 @@
+/* Tailwind solo con utilidades (sin preflight), con prefijo tw: para no chocar con las clases del sistema (.start-7, .span-6...), en una capa: el sistema de diseño
+   (public/assets/system.css) manda; Tailwind lee sus tokens para utilidades puntuales. */
+@layer theme, utilities;
+@import "tailwindcss/theme.css" layer(theme) prefix(tw);
+@import "tailwindcss/utilities.css" layer(utilities) prefix(tw);
+
+@theme inline {
+  --color-fondo: var(--bg);
+  --color-superficie: var(--surface);
+  --color-tinta: var(--ink);
+  --color-apagado: var(--muted);
+  --color-accion: var(--action);
+  --font-display: var(--font-display);
+  --font-texto: var(--font-text);
+}

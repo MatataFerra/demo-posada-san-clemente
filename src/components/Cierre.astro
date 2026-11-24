@@ -1,0 +1,41 @@
+---
+import BotonWhatsApp from './BotonWhatsApp.astro';
+import { NEGOCIO, DISENADOR, whatsapp, MENSAJES } from '../config/site';
+interface Props { mensaje?: string; }
+const { mensaje } = Astro.props;
+const year = 2026;
+---
+<footer class="footer closing footer--visit" id="contacto" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--word">
+      <div class="section-head--split">
+        <div>
+          <h2 id="close-h">Reservas por WhatsApp</h2>
+          <p class="t-lead">Contanos las fechas y cuántos son. Respondemos de 8 a 22.</p>
+        </div>
+        <BotonWhatsApp mensaje={mensaje} />
+      </div>
+      <p class="close__word" aria-hidden="true">{NEGOCIO.nombre}</p>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-6 stack-4">
+          <address class="footer__address">{NEGOCIO.ubicacion},<br />{NEGOCIO.zona}</address>
+          <p><a class="link" href={NEGOCIO.mapa} target="_blank" rel="noopener">Ver en el mapa</a></p>
+        </div>
+        <div class="span-6 start-7 stack-4">
+          <p class="t-label">Recepción</p>
+          <dl class="hours" data-tz="America/Argentina/Buenos_Aires">
+            <dt data-days="mon-sun">Todos los días</dt><dd>{NEGOCIO.recepcion}</dd>
+          </dl>
+          <p class="t-small muted">{NEGOCIO.checkin}.</p>
+        </div>
+      </div>
+      <div class="footer__legal">
+        <span>&copy; {year} {NEGOCIO.nombre}</span>
+        <span>Sitio de demostración, diseñado por <a class="link" href={whatsapp(MENSAJES.disenador, DISENADOR.whatsapp)} target="_blank" rel="noopener">{DISENADOR.nombre}</a></span>
+        <a class="credits link" href="/creditos">Fotografías vía Wikimedia Commons</a>
+      </div>
+    </div>
+  </div>
+</footer>

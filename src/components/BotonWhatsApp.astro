@@ -1,0 +1,7 @@
+---
+import Flecha from './Flecha.astro';
+import { ACCION_PRINCIPAL, whatsapp, MENSAJES } from '../config/site';
+interface Props { mensaje?: string; class?: string; flecha?: boolean; }
+const { mensaje = MENSAJES.general, class: cls = 'btn btn--primary', flecha = true } = Astro.props;
+---
+<a class={cls} href={whatsapp(mensaje)} target="_blank" rel="noopener" data-whatsapp>{ACCION_PRINCIPAL}{flecha && <Flecha />}</a>

@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Foto from '../components/Foto.astro';
+import { FOTOS } from '../data/fotos';
+import { HABITACIONES } from '../data/habitaciones';
+import { NEGOCIO } from '../config/site';
+---
+<Base
+  titulo="Posada La Ría: posada frente al mar en San Clemente del Tuyú"
+  descripcion="Posada de 8 habitaciones a 80 metros de la playa en San Clemente del Tuyú. Desayuno casero incluido. Consultá disponibilidad por WhatsApp."
+  actual="inicio"
+  ogImagen="/og/inicio.jpg"
+>
+  <Hero
+    foto={FOTOS.dunas}
+    titulo="Posada de 8 habitaciones en San Clemente"
+    bajada="A 80 metros de la playa. Desayuno casero de 8 a 11 y recepción hasta las 22."
+  />
+
+  <section class="section" id="visit" data-place="visit" aria-labelledby="visit-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="visit-h">Ubicación y recepción</h2></div>
+      <div class="grid grid--top">
+        <div class="visit visit--card span-6">
+          <div class="visit__cols">
+            <div class="visit__col stack-4">
+              <address class="visit__address">{NEGOCIO.ubicacion},<br />{NEGOCIO.zona}</address>
+              <a class="link" href={NEGOCIO.mapa} target="_blank" rel="noopener">Ver en el mapa</a>
+            </div>
+            <div class="visit__col">
+              <p class="t-label">Recepción</p>
+              <dl class="hours" data-tz="America/Argentina/Buenos_Aires">
+                <dt data-days="mon-sun">Todos los días</dt><dd>{NEGOCIO.recepcion}</dd>
+              </dl>
+            </div>
+          </div>
+          <ul class="visit__rows">
+            <li><span>Check-in y check-out</span><span>Desde las 14, hasta las 10</span></li>
+            <li><span>Cochera cubierta</span><span>6 lugares, a consultar</span></li>
+          </ul>
+        </div>
+        <a class="ph visit-photo span-6 start-7" href="/la-zona" aria-label="Ver qué hay en la zona">
+          <Foto foto={FOTOS.playa} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="habitaciones" aria-labelledby="hab-h">
+    <div class="wrap">
+      <div class="grid ts">
+        <div class="ts__text">
+          <h2 id="hab-h">Habitaciones para 2 a 4 personas</h2>
+          <p>Tres tipos de habitación, todas con baño privado, calefacción y desayuno incluido.</p>
+          <ul class="rows">
+            {HABITACIONES.map((h) => (
+              <li><span class="rows__name">{h.nombre}</span><span class="rows__value">{h.datos.split(' · ')[0]}</span></li>
+            ))}
+          </ul>
+          <p><a class="link" href="/habitaciones">Ver las habitaciones</a></p>
+          <a class="ph ts__small" href="/habitaciones#doble" aria-label="Ver la habitación doble con vista al mar">
+            <Foto foto={FOTOS.almohada} sizes="(max-width: 1023px) 100vw, 600px" />
+          </a>
+        </div>
+        <a class="ph ts__tall" href="/habitaciones#familiar" aria-label="Ver la habitación familiar">
+          <Foto foto={FOTOS.sabanas} sizes="(max-width: 1023px) 100vw, 900px" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="desayuno" aria-labelledby="des-h">
+    <div class="wrap">
+      <div class="head-row">
+        <h2 id="des-h">Desayuno casero de 8 a 11</h2>
+        <p>Pan del día, granola hecha acá, fruta y café de filtro. Incluido en todas las tarifas. <a class="link" href="/habitaciones#incluye">Ver qué incluye</a></p>
+      </div>
+      <div class="grid trio">
+        <a class="ph" href="/habitaciones#incluye" aria-label="Ver qué incluye la estadía"><Foto foto={FOTOS.pan} sizes="(max-width: 639px) 100vw, (max-width: 1023px) 60vw, 486px" /></a>
+        <a class="ph" href="/habitaciones#incluye" aria-label="Ver qué incluye la estadía"><Foto foto={FOTOS.granola} sizes="(max-width: 639px) 50vw, (max-width: 1023px) 60vw, 384px" /></a>
+        <a class="ph" href="/habitaciones#incluye" aria-label="Ver qué incluye la estadía"><Foto foto={FOTOS.lampara} sizes="(max-width: 639px) 50vw, (max-width: 1023px) 60vw, 384px" /></a>
+      </div>
+    </div>
+  </section>
+</Base>

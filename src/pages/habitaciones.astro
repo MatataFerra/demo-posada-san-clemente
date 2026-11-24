@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Foto from '../components/Foto.astro';
+import { FOTOS } from '../data/fotos';
+import { HABITACIONES } from '../data/habitaciones';
+import { whatsapp, MENSAJES } from '../config/site';
+---
+<Base
+  titulo="Habitaciones: Posada La Ría, San Clemente del Tuyú"
+  descripcion="Habitaciones dobles, familiares y suites con balcón a 80 metros del mar. Desayuno incluido. Consultá tarifas por WhatsApp."
+  actual="habitaciones"
+  ogImagen="/og/habitaciones.jpg"
+>
+  <Hero
+    foto={FOTOS.ventana}
+    titulo="Habitaciones a 80 metros del mar"
+    bajada="Ocho habitaciones en tres tipos, con desayuno incluido. Check-in desde las 14."
+  />
+
+  <section class="section" id="tipos" aria-labelledby="tipos-h" style="--hm: 2">
+    <div class="wrap">
+      <div class="head-row">
+        <h2 id="tipos-h">3 tipos de habitación</h2>
+        <p>Las tarifas cambian según la temporada. Consultalas por WhatsApp con tus fechas.</p>
+      </div>
+      <div class="grid rooms">
+        {HABITACIONES.map((h) => (
+          <a class="tile" id={h.slug} href={whatsapp(MENSAJES.habitacion(h.nombre))} target="_blank" rel="noopener">
+            <div class="tile__media"><Foto foto={h.foto} sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 384px" /></div>
+            <div class="tile__head"><h3>{h.nombre}</h3></div>
+            <p class="tile__facts">{h.datos}</p>
+            <p>{h.texto}</p>
+            <span class="link-like">Consultar esta habitación</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="incluye" aria-labelledby="inc-h">
+    <div class="wrap">
+      <div class="grid grid--top">
+        <div class="span-6 stack-5">
+          <h2 id="inc-h">Qué incluye la estadía</h2>
+          <ul class="rows">
+            <li><span class="rows__name">Desayuno casero</span><span class="rows__value">8 a 11</span></li>
+            <li><span class="rows__name">Ropa de cama y toallas</span><span class="rows__value">Incluidas</span></li>
+            <li><span class="rows__name">Wi-Fi</span><span class="rows__value">En toda la posada</span></li>
+            <li><span class="rows__name">Calefacción y ventilador</span><span class="rows__value">En cada habitación</span></li>
+            <li><span class="rows__name">Cochera cubierta</span><span class="rows__value">6 lugares, a consultar</span></li>
+            <li><span class="rows__name">Sombrilla y reposeras</span><span class="rows__value">Se piden en recepción</span></li>
+          </ul>
+        </div>
+        <a class="ph split-photo span-6 start-7" href={whatsapp(MENSAJES.general)} target="_blank" rel="noopener" aria-label="Consultar disponibilidad por WhatsApp">
+          <Foto foto={FOTOS.mantas} />
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

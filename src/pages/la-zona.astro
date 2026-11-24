@@ -1,0 +1,80 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Foto from '../components/Foto.astro';
+import { FOTOS } from '../data/fotos';
+import { NEGOCIO, whatsapp, MENSAJES } from '../config/site';
+const preguntas = [
+  { p: '¿Cómo llego en auto desde Buenos Aires?', r: 'Por Ruta 2 hasta Dolores, después Ruta 63 y Ruta 11 hasta San Clemente. Son unos 320 km, cerca de 4 horas.' },
+  { p: '¿Hay micros a San Clemente?', r: 'Sí. Salen todos los días desde la terminal de Retiro y tardan unas 5 horas. La posada queda a 10 minutos en taxi de la terminal.' },
+  { p: '¿A qué hora es el check-in?', r: 'Desde las 14. El check-out es hasta las 10, y podés dejar el equipaje en recepción hasta la tarde.' },
+  { p: '¿Se aceptan mascotas?', r: 'No. Si viajás con tu perro, te pasamos contactos de alojamientos cercanos que lo aceptan.' },
+  { p: '¿Cómo se reserva?', r: 'Por WhatsApp: te confirmamos disponibilidad y tarifa, y la reserva queda tomada con una seña por transferencia.' },
+];
+---
+<Base
+  titulo="La zona: San Clemente del Tuyú y Punta Rasa | Posada La Ría"
+  descripcion="Qué hacer en San Clemente del Tuyú, cómo llegar desde Buenos Aires y preguntas frecuentes antes de reservar en Posada La Ría."
+  actual="zona"
+  ogImagen="/og/la-zona.jpg"
+  mensaje={MENSAJES.zona}
+>
+  <Hero
+    foto={FOTOS.puntaRasa}
+    titulo="Posada a 8 km de Punta Rasa"
+    bajada="Playa, ría y reserva natural en San Clemente del Tuyú, a 320 km de Buenos Aires."
+    mensaje={MENSAJES.zona}
+  />
+
+  <section class="section" id="playa" aria-labelledby="playa-h">
+    <div class="wrap">
+      <div class="head-row">
+        <h2 id="playa-h">Playa a 80 metros de la posada</h2>
+        <p>Playa ancha de arena fina, médanos con tamariscos y el sol que sale del mar.</p>
+      </div>
+      <div class="grid pair">
+        <a class="ph" href="#cerca" aria-label="Ver lugares cercanos"><Foto foto={FOTOS.tamariscos} /></a>
+        <a class="ph" href="#cerca" aria-label="Ver lugares cercanos"><Foto foto={FOTOS.dunas} /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cerca" aria-labelledby="cerca-h">
+    <div class="wrap">
+      <div class="grid grid--top">
+        <div class="span-6 stack-5">
+          <h2 id="cerca-h">Lugares cerca de la posada</h2>
+          <ul class="rows">
+            <li><span class="rows__name">Mundo Marino</span><span class="rows__value">En San Clemente</span></li>
+            <li><span class="rows__name">Termas Marinas</span><span class="rows__value">Camino a Punta Rasa</span></li>
+            <li><span class="rows__name">Faro San Antonio</span><span class="rows__value">Punta Rasa</span></li>
+            <li><span class="rows__name">Reserva Punta Rasa, aves playeras</span><span class="rows__value">Punta Rasa</span></li>
+            <li><span class="rows__name">Puerto y ría de San Clemente</span><span class="rows__value">En San Clemente</span></li>
+          </ul>
+          <p><a class="link" href={NEGOCIO.mapa} target="_blank" rel="noopener">Ver en el mapa</a></p>
+        </div>
+        <a class="ph split-photo span-6 start-7" href={NEGOCIO.mapa} target="_blank" rel="noopener" aria-label="Ver San Clemente en el mapa">
+          <Foto foto={FOTOS.playa} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="preguntas" aria-labelledby="faq-h" style="--hm: 2">
+    <div class="wrap">
+      <div class="grid grid--top">
+        <div class="span-6 stack-4">
+          <h2 id="faq-h">Preguntas frecuentes</h2>
+          <p class="muted">¿Otra duda? Escribinos y te respondemos en el día.</p>
+          <p><a class="link" href={whatsapp(MENSAJES.zona)} target="_blank" rel="noopener">Escribir por WhatsApp</a></p>
+          <a class="ph faq-photo" href={whatsapp(MENSAJES.zona)} target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><Foto foto={FOTOS.amanecer} /></a>
+        </div>
+        <div class="faq span-6 start-7">
+          {preguntas.map((q) => (
+            <div class="faq__item"><h3>{q.p}</h3><p>{q.r}</p></div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,39 @@
+---
+import Foto from './Foto.astro';
+import BotonWhatsApp from './BotonWhatsApp.astro';
+import { HABITACIONES } from '../data/habitaciones';
+import { NEGOCIO } from '../config/site';
+interface Props { actual: 'inicio' | 'habitaciones' | 'zona'; }
+const { actual } = Astro.props;
+---
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip" href="#contenido">Ir al contenido</a>
+    <a class="nav__logo" href="/"><span class="mark" data-mark="leaf" aria-hidden="true"></span>{NEGOCIO.nombre}</a>
+    <nav class="nav__links" aria-label="Principal">
+      <div class="nav__item">
+        <a class="nav__link" href="/habitaciones" aria-current={actual === 'habitaciones' ? 'page' : undefined}>Habitaciones <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav__menu">
+          <div class="wrap grid">
+            {HABITACIONES.map((h) => (
+              <a class="menu-card span-4" href={`/habitaciones#${h.slug}`}>
+                <div class="panel"><Foto foto={h.foto} class="frame__img" sizes="384px" /></div>
+                <span class="t-card">{h.nombre}</span>
+                <span class="t-small muted">{h.datos}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div class="nav__item"><a class="nav__link" href="/#desayuno">Desayuno</a></div>
+      <div class="nav__item"><a class="nav__link" href="/la-zona" aria-current={actual === 'zona' ? 'page' : undefined}>La zona</a></div>
+      <div class="nav__item"><a class="nav__link" href="/#visit">Ubicación</a></div>
+    </nav>
+    <div class="nav__actions">
+      <BotonWhatsApp flecha={false} />
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menú">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>

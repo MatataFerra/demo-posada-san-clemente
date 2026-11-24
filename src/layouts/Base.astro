@@ -1,0 +1,68 @@
+---
+import '@fontsource/zilla-slab/400.css';
+import '@fontsource/zilla-slab/600.css';
+import '@fontsource-variable/rethink-sans';
+import '../styles/kit/system.css';
+import '../styles/kit/cards.css';
+import '../styles/kit/motion.css';
+import '../styles/kit/layout.css';
+import '../styles/tokens.css';
+import '../styles/page.css';
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Cierre from '../components/Cierre.astro';
+import BotonWhatsApp from '../components/BotonWhatsApp.astro';
+
+interface Props {
+  titulo: string;
+  descripcion: string;
+  actual: 'inicio' | 'habitaciones' | 'zona';
+  ogImagen: string;
+  mensaje?: string;
+}
+const { titulo, descripcion, actual, ogImagen, mensaje } = Astro.props;
+const url = new URL(Astro.url.pathname, Astro.site);
+const og = new URL(ogImagen, Astro.site);
+---
+<!doctype html>
+<html lang="es-AR" data-type="place" data-radius="soft" data-buttons="solid" data-motion>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{titulo}</title>
+  <meta name="description" content={descripcion} />
+  <meta name="site-kind" content="other" />
+  <meta name="page-type" content="place" />
+  <meta name="page-kind" content="place" />
+  <meta name="theme-color" content="#f7f3ec" />
+  <link rel="canonical" href={url} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:site_name" content="Posada La Ría" />
+  <meta property="og:title" content={titulo} />
+  <meta property="og:description" content={descripcion} />
+  <meta property="og:url" content={url} />
+  <meta property="og:image" content={og} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+</head>
+<body>
+<!-- type: place
+     deal: hero place (no se sortea), nav nav-cards, close close-word (momento "name"), footer footer-visit,
+     rhythm space, buttons solid, mark leaf, offer tall-small, place trio, rooms side.
+     palette: brand (arena #F7F3EC, tinta #2A2622, acento azul petróleo #1F4E5A), type zilla (Zilla Slab / Rethink Sans). -->
+<Nav actual={actual} />
+<main id="contenido">
+  <slot />
+</main>
+<Cierre mensaje={mensaje} />
+<nav class="actionbar" aria-label="Acciones rápidas">
+  <BotonWhatsApp mensaje={mensaje} flecha={false} />
+</nav>
+<script type="module" src="/assets/system.js" is:inline></script>
+<script type="module" src="/assets/motion/motion.js" is:inline></script>
+<script type="module" src="/assets/layout/layout.js" is:inline></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+/* Paleta y tipografías (start.mjs brand --page place). Va después del kit: sobrescribe sus valores por defecto. */
+  :root {
+  --p-bg: #f7f3ec; --p-surface: #ede6da; --p-ink: #2a2622; --p-muted: #665e55;
+  --p-accent: #1f4e5a; --p-accent-ink: #f7f3ec; --p-action: #1f4e5a; --p-action-ink: #f7f3ec;
+  --p-inv-bg: #2a2622; --p-inv-surface: #36322e; --p-inv-ink: #f7f3ec; --p-inv-muted: #a29e98;
+  --p-inv-accent: #f7f3ec; --p-inv-accent-ink: #2a2622; --p-inv-action: #f7f3ec; --p-inv-action-ink: #2a2622;
+  --font-display: "Zilla Slab", Georgia, serif;
+  --font-text: "Rethink Sans Variable", system-ui, sans-serif;
+  --display-weight: 400;
+  --display-tracking: -0.018em;
+}
