@@ -80,3 +80,17 @@ a.ph:hover > img, a:hover > .ph > img { transform: scale(1.03); }
 @media (max-width: 639px) {
   #visit .visit-photo, .split-photo { aspect-ratio: 2 / 1; }
 }
+
+/* Sección propia de cada habitación: dos ambientes, cada uno con su foto y sus datos */
+.ambiente { grid-column: span 6; display: grid; gap: var(--s-3); align-content: start; }
+.ambiente__foto { aspect-ratio: 16 / 10; max-height: calc(100svh - var(--padt) - var(--padb) - var(--bar) - 320px); width: 100%; }
+.ambiente__nombre { margin: var(--s-3) 0 0; color: var(--ink); font: 500 18px/26px var(--font-text); }
+.ambiente .rows > li { min-height: 40px; }
+.head-row > .stack-3 { display: grid; gap: var(--s-2); }
+@media (max-width: 1023px) { .ambiente__foto { max-height: none; } }
+@media (min-width: 640px) and (max-width: 1023px) { .ambiente__foto { aspect-ratio: 3 / 4; } }
+@media (max-width: 639px) {
+  .ambiente { grid-column: 1 / -1; }
+  .ambiente__foto { aspect-ratio: 1; }
+  .rooms .tile__media { --tile-ratio: 3 / 2; }
+}

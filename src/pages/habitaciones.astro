@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Foto from '../components/Foto.astro';
+import SeccionHabitacion from '../components/SeccionHabitacion.astro';
 import { FOTOS } from '../data/fotos';
 import { HABITACIONES } from '../data/habitaciones';
 import { whatsapp, MENSAJES } from '../config/site';
@@ -26,17 +27,19 @@ import { whatsapp, MENSAJES } from '../config/site';
       </div>
       <div class="grid rooms">
         {HABITACIONES.map((h) => (
-          <a class="tile" id={h.slug} href={whatsapp(MENSAJES.habitacion(h.nombre))} target="_blank" rel="noopener">
+          <a class="tile" href={`#${h.slug}`}>
             <div class="tile__media"><Foto foto={h.foto} sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 384px" /></div>
             <div class="tile__head"><h3>{h.nombre}</h3></div>
             <p class="tile__facts">{h.datos}</p>
             <p>{h.texto}</p>
-            <span class="link-like">Consultar esta habitación</span>
+            <span class="link-like">Ver la habitación</span>
           </a>
         ))}
       </div>
     </div>
   </section>
+
+  {HABITACIONES.map((h) => <SeccionHabitacion hab={h} />)}
 
   <section class="section" id="incluye" aria-labelledby="inc-h">
     <div class="wrap">
