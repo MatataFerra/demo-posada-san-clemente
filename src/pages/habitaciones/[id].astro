@@ -13,11 +13,7 @@ interface Props { hab: Habitacion; }
 const { hab } = Astro.props;
 const mensaje = MENSAJES.habitacion(hab.nombre);
 const otras = HABITACIONES.filter((h) => h.slug !== hab.slug);
-const tamanosGaleria = [
-  '(max-width: 639px) 100vw, (max-width: 1023px) 100vw, 600px',
-  '(max-width: 639px) 50vw, (max-width: 1023px) 100vw, 600px',
-  '(max-width: 639px) 50vw, (max-width: 1023px) 100vw, 600px',
-];
+const tamanosGaleria = (i: number) => i === 0 || i === 5 ? '(max-width: 639px) 100vw, (max-width: 1023px) 66vw, 820px' : '(max-width: 639px) 50vw, (max-width: 1023px) 66vw, 820px';
 ---
 <Base
   titulo={`${hab.nombre}: Posada La Ría, San Clemente del Tuyú`}
@@ -30,16 +26,16 @@ const tamanosGaleria = [
 
   <SeccionHabitacion hab={hab} />
 
-  <section class="section" id="fotos" aria-labelledby="fotos-h">
+  <section class="section" id="fotos" aria-labelledby="fotos-h" style="--h: 2; --hm: 2">
     <div class="wrap">
       <div class="head-row">
-        <h2 id="fotos-h">Detalles de la habitación</h2>
-        <p>Ropa de cama de algodón, mantas de lana para las noches frescas y desayuno casero incluido.</p>
+        <h2 id="fotos-h">Fotos de la {hab.nombre.toLowerCase()}</h2>
+        <p>{hab.galeriaTexto}</p>
       </div>
-      <div class="grid trio">
+      <div class="grid galeria">
         {hab.galeria.map((f, i) => (
           <a class="ph" href={whatsapp(mensaje)} target="_blank" rel="noopener" aria-label={`Consultar ${hab.nombre} por WhatsApp`}>
-            <Foto foto={f} sizes={tamanosGaleria[i]} />
+            <Foto foto={f} sizes={tamanosGaleria(i)} />
           </a>
         ))}
       </div>

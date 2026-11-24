@@ -12,7 +12,8 @@ export type Habitacion = {
   foto: Foto; // foto principal
   ambientesTitulo: string;
   ambientes: [Ambiente, Ambiente];
-  galeria: [Foto, Foto, Foto]; // fotos de detalle: grande, mediana, chica
+  galeria: [Foto, Foto, Foto, Foto, Foto, Foto]; // galería: dos grandes arriba, cuatro abajo
+  galeriaTexto: string;
   vista: { titulo: string; texto: string; fotos: [Foto, Foto] };
   ficha: [string, string][]; // la ficha completa
   equipamiento: string[];
@@ -32,7 +33,8 @@ export const HABITACIONES: Habitacion[] = [
       { nombre: 'Dormitorio', foto: FOTOS.dobleCuarto, detalles: [['Cama matrimonial', '1,60 x 1,90 m'], ['Sillón y mesa auxiliar', 'Junto al ventanal'], ['Baño privado', 'Con ducha']] },
       { nombre: 'Vista', foto: FOTOS.dobleVista, detalles: [['Ventanal al mar', 'Orientación este'], ['Piso', 'Primero, al frente'], ['Cortinas', 'Blackout y voile']] },
     ],
-    galeria: [FOTOS.almohada, FOTOS.lampara, FOTOS.granola],
+    galeria: [FOTOS.dobleLuz, FOTOS.dobleVentana, FOTOS.dobleEscritorio, FOTOS.almohada, FOTOS.lampara, FOTOS.granola],
+    galeriaTexto: 'Ventanal con cortinas de lino, sillón de mimbre, mesa para dos y desayuno casero en la habitación.',
     vista: {
       titulo: 'Vista al mar desde la cama',
       texto: 'El ventanal mira al este: el sol sale del mar frente a la cama. La playa queda a 80 metros, cruzando la costanera.',
@@ -57,17 +59,18 @@ export const HABITACIONES: Habitacion[] = [
       { nombre: 'Cuarto de adultos', foto: FOTOS.familiarAdultos, detalles: [['Cama matrimonial', '1,60 x 1,90 m'], ['Placard y mesas de luz', 'Incluidos'], ['Baño privado', 'Con ducha']] },
       { nombre: 'Cuarto de chicos', foto: FOTOS.familiarChicos, detalles: [['Cucheta de madera', '2 camas de 0,90 m'], ['Puerta corrediza', 'Al cuarto de adultos'], ['Cuna', 'Sin cargo, a pedido']] },
     ],
-    galeria: [FOTOS.mantas, FOTOS.sabanas, FOTOS.pan],
+    galeria: [FOTOS.familiarCamas, FOTOS.familiarCucheta, FOTOS.familiarTres, FOTOS.familiarLampara, FOTOS.mantas, FOTOS.pan],
+    galeriaTexto: 'Matrimonial con lugar para una cama extra en el cuarto de adultos, cucheta con escalera en el de chicos y mantas de lana para todos.',
     vista: {
       titulo: 'A una cuadra de la playa',
       texto: 'La familiar está en planta baja, sobre el jardín: se sale directo a la costanera. Sombrilla y reposeras se piden en recepción.',
       fotos: [FOTOS.playa, FOTOS.dunas],
     },
     ficha: [
-      ['Capacidad', '4 personas'], ['Superficie', '26 m² en dos cuartos'], ['Camas', '1 matrimonial y 1 cucheta'],
+      ['Capacidad', '4 personas, 5 con cama extra'], ['Superficie', '26 m² en dos cuartos'], ['Camas', '1 matrimonial y 1 cucheta'],
       ['Baño', 'Privado, con ducha'], ['Piso', 'Planta baja, al jardín'], ['Vista', 'Al jardín']
     ],
-    equipamiento: ['Calefacción en los dos cuartos', 'Smart TV de 32"', 'Wi-Fi', 'Frigobar y pava eléctrica', 'Cuna y silla alta a pedido', 'Juegos de mesa en recepción'],
+    equipamiento: ['Calefacción en los dos cuartos', 'Smart TV de 32"', 'Wi-Fi', 'Frigobar y pava eléctrica', 'Cama extra, cuna y silla alta a pedido', 'Juegos de mesa en recepción'],
   },
   {
     slug: 'suite',
@@ -82,7 +85,8 @@ export const HABITACIONES: Habitacion[] = [
       { nombre: 'Dormitorio y balcón', foto: FOTOS.suiteCuarto, detalles: [['Cama king', '1,80 x 2,00 m'], ['Balcón al mar', '6 m², dos sillas y mesa'], ['Piso', 'Tercero, el último']] },
       { nombre: 'Baño', foto: FOTOS.suiteBano, detalles: [['Bacha de piedra', 'Con espejo y luz cálida'], ['Ducha amplia', 'Con mampara'], ['Amenities', 'Bata y pantuflas']] },
     ],
-    galeria: [FOTOS.ventana, FOTOS.suite, FOTOS.dobleVista],
+    galeria: [FOTOS.suiteBalcon, FOTOS.suiteTerraza, FOTOS.suitePlantas, FOTOS.ventana, FOTOS.suite, FOTOS.dobleVista],
+    galeriaTexto: 'Ventanal de piso a techo, balcón de 6 m² con reposeras y plantas, y desayuno con el mar enfrente.',
     vista: {
       titulo: 'Balcón sobre la playa',
       texto: 'Desde el tercer piso se ve toda la playa y, en días claros, la punta de Punta Rasa hacia el norte.',

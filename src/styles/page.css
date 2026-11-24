@@ -47,6 +47,21 @@ a.ph:hover > img, a:hover > .ph > img { transform: scale(1.03); }
   .trio > :nth-child(2), .trio > :nth-child(3) { grid-column: span 6; aspect-ratio: 1; }
 }
 
+/* galeria: seis fotos en dos filas espejadas (5-4-3 y 3-4-5), una sola altura por fila */
+.galeria { --g-h: min(620px, calc((100svh * 2 - 340px) / 2)); align-items: start; }
+.galeria > .ph { height: var(--g-h); }
+.galeria > :nth-child(1), .galeria > :nth-child(6) { grid-column: span 5; }
+.galeria > :nth-child(2), .galeria > :nth-child(5) { grid-column: span 4; }
+.galeria > :nth-child(3), .galeria > :nth-child(4) { grid-column: span 3; }
+@media (min-width: 640px) and (max-width: 1023px) {
+  .galeria { --g-h: 420px; }
+  .galeria > .ph { grid-column: span 6 !important; }
+}
+@media (max-width: 639px) {
+  .galeria > .ph { height: auto; grid-column: span 6 !important; aspect-ratio: 1; }
+  .galeria > :nth-child(1), .galeria > :nth-child(6) { grid-column: 1 / -1 !important; aspect-ratio: 4 / 3; }
+}
+
 /* pair: dos fotos 4:3 en 6 columnas */
 .pair > .ph { grid-column: span 6; aspect-ratio: 4 / 3; }
 @media (max-width: 639px) { .pair > .ph { grid-column: 1 / -1; aspect-ratio: 16 / 10; } }
