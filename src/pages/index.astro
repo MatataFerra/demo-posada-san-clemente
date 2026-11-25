@@ -1,4 +1,5 @@
 ---
+import { posadaLD, sitioLD } from '../data/seo';
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Foto from '../components/Foto.astro';
@@ -11,6 +12,8 @@ import { NEGOCIO } from '../config/site';
   descripcion="Posada de 8 habitaciones a 80 metros de la playa en San Clemente del Tuyú. Desayuno casero incluido. Consultá disponibilidad por WhatsApp."
   actual="inicio"
   ogImagen="/og/inicio.jpg"
+  ogAlt="El sol sale del mar frente a Posada La Ría, en San Clemente del Tuyú"
+  jsonld={[posadaLD, sitioLD]}
 >
   <Hero
     foto={FOTOS.amanecer}

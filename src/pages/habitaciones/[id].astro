@@ -1,4 +1,5 @@
 ---
+import { habitacionLD, migasLD } from '../../data/seo';
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import Foto from '../../components/Foto.astro';
@@ -18,6 +19,8 @@ const tamanosGaleria = (i: number) => i === 0 || i === 5 ? '(max-width: 639px) 1
   descripcion={`${hab.nombre} en Posada La Ría: ${hab.datos}. Desayuno incluido, a 80 metros de la playa. Consultá disponibilidad por WhatsApp.`}
   actual="habitaciones"
   ogImagen={`/og/hab-${hab.slug}.jpg`}
+  ogAlt={hab.foto.alt}
+  jsonld={[habitacionLD(hab), migasLD([['Inicio', '/'], ['Habitaciones', '/habitaciones'], [hab.nombre, `/habitaciones/${hab.slug}`]])]}
   habitacion={hab.slug}
 >
   <Hero foto={hab.foto} titulo={hab.titulo} bajada={hab.bajada} />

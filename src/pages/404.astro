@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import Foto from '../components/Foto.astro';
+import { FOTOS } from '../data/fotos';
+import { HABITACIONES } from '../data/habitaciones';
+---
+<Base
+  titulo="Página no encontrada | Posada La Ría"
+  descripcion="Esta página no existe. Mirá las habitaciones de Posada La Ría o consultá disponibilidad por WhatsApp."
+>
+  <section class="section" id="no-encontrada" aria-labelledby="nf-h">
+    <div class="wrap">
+      <div class="grid grid--top">
+        <div class="span-6 stack-5">
+          <h1 id="nf-h">Esta página no existe</h1>
+          <p>Puede que el enlace esté mal escrito o que la página se haya movido. Estas son las habitaciones de la posada:</p>
+          <ul class="rows">
+            {HABITACIONES.map((h) => (
+              <li><a class="rows__name link" href={`/habitaciones/${h.slug}`}>{h.nombre}</a><span class="rows__value">{h.datos.split(' · ')[0]}</span></li>
+            ))}
+          </ul>
+          <p><a class="link" href="/">Volver al inicio</a></p>
+        </div>
+        <div class="ph split-photo span-6 start-7"><Foto foto={FOTOS.reposeras} /></div>
+      </div>
+    </div>
+  </section>
+</Base>

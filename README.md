@@ -46,3 +46,22 @@ En Vercel, `vercel.json` activa `cleanUrls` para servir `/habitaciones/doble` si
 ## Fotos
 
 Todas son de licencia libre (Wikimedia Commons). Ver [CREDITS.md](CREDITS.md). Son de reemplazo: un cliente real las cambia por las propias en `public/assets/img/` y `src/data/fotos.ts`.
+
+## SEO
+
+El sitio es una demo y **no se indexa**:
+- Cada página lleva `<meta name="robots" content="noindex, follow">`.
+- `vercel.json` agrega el header `X-Robots-Tag: noindex, follow`.
+- `robots.txt` permite el rastreo a propósito: si lo bloqueara, los buscadores no llegarían a leer el `noindex`.
+
+Lo demás está completo, como en un sitio real:
+
+- **Metadatos:** `title`, `description` y `canonical` con URLs limpias (sin `.html`), por página.
+- **Open Graph y Twitter:** imágenes de 1200x630 en `public/og/`, con foto, título y marca, y su texto alternativo.
+- **`/sitemap.xml`:** lo genera `src/pages/sitemap.xml.ts` con todas las páginas públicas.
+- **Datos estructurados (schema.org)** en `src/data/seo.ts`:
+  - `BedAndBreakfast` y `WebSite` en el inicio.
+  - `HotelRoom` o `Suite` en cada habitación.
+  - `FAQPage` en La zona.
+  - `BreadcrumbList` en las páginas internas.
+- **Página 404** propia, sin canonical.

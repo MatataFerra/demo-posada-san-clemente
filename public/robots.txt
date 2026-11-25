@@ -1,0 +1,10 @@
+# Posada La Ría: sitio de demostración, diseñado por Matías Ferraro.
+# El negocio es ficticio y el sitio no se indexa: cada página lleva
+# <meta name="robots" content="noindex, follow"> y Vercel agrega el header
+# X-Robots-Tag: noindex. El rastreo queda permitido a propósito: si se
+# bloqueara acá, los buscadores no llegarían a leer el noindex.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://demo-posada-san-clemente.vercel.app/sitemap.xml

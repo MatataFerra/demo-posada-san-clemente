@@ -3,7 +3,7 @@ import Foto from './Foto.astro';
 import BotonConsulta from './BotonConsulta.astro';
 import { HABITACIONES } from '../data/habitaciones';
 import { NEGOCIO } from '../config/site';
-interface Props { actual: 'inicio' | 'habitaciones' | 'zona'; }
+interface Props { actual?: 'inicio' | 'habitaciones' | 'zona'; }
 const { actual } = Astro.props;
 ---
 <header class="nav">

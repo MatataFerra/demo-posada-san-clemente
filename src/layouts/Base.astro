@@ -16,12 +16,20 @@ import BotonConsulta from '../components/BotonConsulta.astro';
 interface Props {
   titulo: string;
   descripcion: string;
-  actual: 'inicio' | 'habitaciones' | 'zona';
-  ogImagen: string;
+  actual?: 'inicio' | 'habitaciones' | 'zona';
+  ogImagen?: string;
+  ogAlt?: string;
   habitacion?: string; // slug: preselecciona la habitación en el formulario de consulta
+  jsonld?: Record<string, unknown>[]; // datos estructurados (schema.org) de la página
 }
-const { titulo, descripcion, actual, ogImagen, habitacion } = Astro.props;
-const url = new URL(Astro.url.pathname, Astro.site);
+const {
+  titulo, descripcion, actual, ogImagen = '/og/inicio.jpg',
+  ogAlt = 'Posada La Ría, posada frente al mar en San Clemente del Tuyú', habitacion, jsonld = [],
+} = Astro.props;
+// URL limpia: Vercel sirve /habitaciones/doble sin .html (cleanUrls) y el inicio como /
+const ruta = Astro.url.pathname.replace(/(index)?\.html$/, '').replace(/(.)\/$/, '$1') || '/';
+const url = new URL(ruta, Astro.site);
+const es404 = ruta === '/404';
 const og = new URL(ogImagen, Astro.site);
 ---
 <!doctype html>
@@ -35,18 +43,29 @@ const og = new URL(ogImagen, Astro.site);
   <meta name="page-type" content="place" />
   <meta name="page-kind" content="place" />
   <meta name="theme-color" content="#f7f3ec" />
-  <link rel="canonical" href={url} />
+  {!es404 && <link rel="canonical" href={url} />}
+  <meta name="robots" content="noindex, follow" />
+  <meta name="author" content="Matías Ferraro" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_AR" />
   <meta property="og:site_name" content="Posada La Ría" />
   <meta property="og:title" content={titulo} />
   <meta property="og:description" content={descripcion} />
-  <meta property="og:url" content={url} />
+  {!es404 && <meta property="og:url" content={url} />}
   <meta property="og:image" content={og} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt" content={ogAlt} />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={titulo} />
+  <meta name="twitter:description" content={descripcion} />
+  <meta name="twitter:image" content={og} />
+  <meta name="twitter:image:alt" content={ogAlt} />
+  {jsonld.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
 </head>
 <body>
 <!-- type: place

@@ -1,4 +1,5 @@
 ---
+import { faqLD, migasLD } from '../data/seo';
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Foto from '../components/Foto.astro';
@@ -17,6 +18,8 @@ const preguntas = [
   descripcion="Qué hacer en San Clemente del Tuyú, cómo llegar desde Buenos Aires y preguntas frecuentes antes de reservar en Posada La Ría."
   actual="zona"
   ogImagen="/og/la-zona.jpg"
+  ogAlt="Arena y mar en Punta Rasa, a 8 km de Posada La Ría"
+  jsonld={[faqLD(preguntas), migasLD([['Inicio', '/'], ['La zona', '/la-zona']])]}
 >
   <Hero
     foto={FOTOS.puntaRasa}
