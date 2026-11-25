@@ -29,3 +29,5 @@ dist/.taste-skill/
 
 # críticas locales de la skill impeccable
 .impeccable/
+.vercel
+.env*
