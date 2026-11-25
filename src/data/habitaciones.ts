@@ -4,6 +4,7 @@ import type { Foto } from './fotos';
 export type Ambiente = { nombre: string; foto: Foto; detalles: [string, string][] };
 export type Habitacion = {
   slug: string;
+  capacidad: number; // máximo de personas, para el formulario de consulta
   nombre: string;
   titulo: string; // h1 de la página propia: qué es y dónde, 40 caracteres máx.
   datos: string; // línea corta para tarjetas
@@ -22,6 +23,7 @@ export type Habitacion = {
 export const HABITACIONES: Habitacion[] = [
   {
     slug: 'doble',
+    capacidad: 2,
     nombre: 'Habitación doble con vista al mar',
     titulo: 'Habitación doble al mar en San Clemente',
     datos: '2 personas · 18 m² · cama matrimonial',
@@ -44,10 +46,11 @@ export const HABITACIONES: Habitacion[] = [
       ['Capacidad', '2 personas'], ['Superficie', '18 m²'], ['Camas', '1 matrimonial de 1,60 m'],
       ['Baño', 'Privado, con ducha'], ['Piso', 'Primero, al frente'], ['Vista', 'Al mar']
     ],
-    equipamiento: ['Calefacción y ventilador de techo', 'Smart TV de 32"', 'Wi-Fi', 'Frigobar', 'Secador de pelo', 'Caja de seguridad'],
+    equipamiento: ['Ventilador de techo y calefacción', 'Smart TV de 32"', 'Wi-Fi', 'Frigobar', 'Secador de pelo', 'Caja de seguridad'],
   },
   {
     slug: 'familiar',
+    capacidad: 5,
     nombre: 'Habitación familiar',
     titulo: 'Habitación familiar a 80 m del mar',
     datos: '4 personas · 26 m² · matrimonial y cucheta',
@@ -59,21 +62,22 @@ export const HABITACIONES: Habitacion[] = [
       { nombre: 'Cuarto de adultos', foto: FOTOS.familiarAdultos, detalles: [['Cama matrimonial', '1,60 x 1,90 m'], ['Placard y mesas de luz', 'Incluidos'], ['Baño privado', 'Con ducha']] },
       { nombre: 'Cuarto de chicos', foto: FOTOS.familiarChicos, detalles: [['Cucheta de madera', '2 camas de 0,90 m'], ['Puerta corrediza', 'Al cuarto de adultos'], ['Cuna', 'Sin cargo, a pedido']] },
     ],
-    galeria: [FOTOS.familiarCamas, FOTOS.familiarCucheta, FOTOS.familiarTres, FOTOS.familiarLampara, FOTOS.mantas, FOTOS.pan],
-    galeriaTexto: 'Matrimonial con lugar para una cama extra en el cuarto de adultos, cucheta con escalera en el de chicos y mantas de lana para todos.',
+    galeria: [FOTOS.familiarCamas, FOTOS.familiarCucheta, FOTOS.familiarTres, FOTOS.familiarLampara, FOTOS.balde, FOTOS.pan],
+    galeriaTexto: 'Matrimonial con lugar para una cama extra en el cuarto de adultos, cucheta con escalera en el de chicos y baldes y palitas para la playa, que queda a una cuadra.',
     vista: {
       titulo: 'A una cuadra de la playa',
       texto: 'La familiar está en planta baja, sobre el jardín: se sale directo a la costanera. Sombrilla y reposeras se piden en recepción.',
       fotos: [FOTOS.playa, FOTOS.dunas],
     },
     ficha: [
-      ['Capacidad', '4 personas, 5 con cama extra'], ['Superficie', '26 m² en dos cuartos'], ['Camas', '1 matrimonial y 1 cucheta'],
+      ['Capacidad', '4 personas + 1 extra'], ['Superficie', '26 m² en dos cuartos'], ['Camas', '1 matrimonial y 1 cucheta'],
       ['Baño', 'Privado, con ducha'], ['Piso', 'Planta baja, al jardín'], ['Vista', 'Al jardín']
     ],
-    equipamiento: ['Calefacción en los dos cuartos', 'Smart TV de 32"', 'Wi-Fi', 'Frigobar y pava eléctrica', 'Cama extra, cuna y silla alta a pedido', 'Juegos de mesa en recepción'],
+    equipamiento: ['Ventilador de techo y calefacción en los dos cuartos', 'Smart TV de 32"', 'Wi-Fi', 'Frigobar y pava eléctrica', 'Cama extra, cuna y silla alta a pedido', 'Juegos de mesa en recepción'],
   },
   {
     slug: 'suite',
+    capacidad: 2,
     nombre: 'Suite con balcón al mar',
     titulo: 'Suite con balcón al mar en San Clemente',
     datos: '2 personas · 30 m² · balcón al mar',
@@ -101,6 +105,8 @@ export const HABITACIONES: Habitacion[] = [
 ];
 
 export const CONDICIONES: [string, string][] = [
+  ['Temporada', 'De octubre a abril'],
+  ['Mínimo en verano', '3 noches'],
   ['Check-in', 'Desde las 14'],
   ['Check-out', 'Hasta las 10'],
   ['Desayuno', 'De 8 a 11, incluido'],

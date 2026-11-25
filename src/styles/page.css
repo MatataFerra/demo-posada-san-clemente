@@ -130,3 +130,28 @@ a:hover > .ph > img { transform: scale(1.03); }
   .rooms--dos .tile__head > h3 { font-size: 16px; }
   .rooms--dos .tile__facts { display: none; }
 }
+
+/* consulta: formulario del cierre que arma el mensaje de WhatsApp (fechas, personas, habitación) */
+.consulta { width: min(100%, 560px); grid-template-columns: repeat(2, minmax(0, 1fr)); align-self: end; }
+.consulta .field { min-width: 0; }
+.consulta .field :is(input, select) { accent-color: var(--accent); min-width: 0; max-width: 100%; }
+.consulta .field :is(input, select)[aria-invalid="true"] { border-color: var(--error); box-shadow: 0 0 0 1px var(--error); }
+.consulta .btn-row .btn { width: 100%; }
+.consulta__error { color: var(--error); font-size: var(--t-small); font-weight: 500; }
+.consulta__nota { font-size: var(--t-small); color: var(--muted); }
+.closing__cta > .section-head--split { align-items: end; }
+@media (max-width: 639px) { .consulta { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* el cierre con formulario crece con su contenido (mínimo una pantalla) en vez de superponerse */
+footer.closing:has(.consulta) { height: auto !important; min-height: 100svh; }
+footer.closing:has(.consulta) > .wrap { height: auto; row-gap: var(--s-7); }
+footer.closing:has(.consulta) .closing__cta { gap: var(--s-5); }
+@media (min-width: 1024px) { footer.closing:has(.consulta) .close__word { font-size: clamp(64px, 12vw, 176px); } }
+/* desde 1280 el título y el formulario van sobre las columnas del grid, alineados con el pie de abajo */
+@media (min-width: 1280px) {
+  .closing__cta > .section-head--split { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap, 24px); align-items: start; }
+  .closing__cta > .section-head--split > div { grid-column: 1 / span 6; max-width: none; }
+  .closing__cta > .section-head--split > .consulta { grid-column: 7 / -1; width: 100%; }
+}
+@media (min-width: 640px) and (max-width: 1279px) {
+  .closing__cta > .section-head--split > .consulta { width: 100%; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}

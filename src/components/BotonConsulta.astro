@@ -1,0 +1,11 @@
+---
+/**
+ * Botón principal: lleva al formulario de consulta del cierre (#consulta), que arma el mensaje de
+ * WhatsApp con las fechas y la cantidad de personas. Así el mensaje nunca sale con blancos.
+ */
+import Flecha from './Flecha.astro';
+import { ACCION_PRINCIPAL } from '../config/site';
+interface Props { class?: string; flecha?: boolean; }
+const { class: cls = 'btn btn--primary', flecha = true } = Astro.props;
+---
+<a class={cls} href="#consulta" data-consulta-ir>{ACCION_PRINCIPAL}{flecha && <Flecha />}</a>

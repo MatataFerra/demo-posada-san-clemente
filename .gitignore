@@ -26,3 +26,6 @@ pnpm-debug.log*
 # chequeos locales de la skill de diseño
 .taste-skill/
 dist/.taste-skill/
+
+# críticas locales de la skill impeccable
+.impeccable/

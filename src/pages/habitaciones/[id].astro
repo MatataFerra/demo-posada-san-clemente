@@ -4,25 +4,23 @@ import Hero from '../../components/Hero.astro';
 import Foto from '../../components/Foto.astro';
 import SeccionHabitacion from '../../components/SeccionHabitacion.astro';
 import { HABITACIONES, CONDICIONES, type Habitacion } from '../../data/habitaciones';
-import { MENSAJES } from '../../config/site';
 
 export function getStaticPaths() {
   return HABITACIONES.map((hab) => ({ params: { id: hab.slug }, props: { hab } }));
 }
 interface Props { hab: Habitacion; }
 const { hab } = Astro.props;
-const mensaje = MENSAJES.habitacion(hab.nombre);
 const otras = HABITACIONES.filter((h) => h.slug !== hab.slug);
-const tamanosGaleria = (i: number) => i === 0 || i === 5 ? '(max-width: 639px) 100vw, (max-width: 1023px) 66vw, 820px' : '(max-width: 639px) 50vw, (max-width: 1023px) 66vw, 820px';
+const tamanosGaleria = (i: number) => i === 0 || i === 5 ? '(max-width: 639px) 100vw, (max-width: 1023px) 66vw, 820px' : '(max-width: 639px) 75vw, (max-width: 1023px) 66vw, 820px';
 ---
 <Base
   titulo={`${hab.nombre}: Posada La Ría, San Clemente del Tuyú`}
   descripcion={`${hab.nombre} en Posada La Ría: ${hab.datos}. Desayuno incluido, a 80 metros de la playa. Consultá disponibilidad por WhatsApp.`}
   actual="habitaciones"
   ogImagen={`/og/hab-${hab.slug}.jpg`}
-  mensaje={mensaje}
+  habitacion={hab.slug}
 >
-  <Hero foto={hab.foto} titulo={hab.titulo} bajada={hab.bajada} mensaje={mensaje} />
+  <Hero foto={hab.foto} titulo={hab.titulo} bajada={hab.bajada} />
 
   <SeccionHabitacion hab={hab} />
 

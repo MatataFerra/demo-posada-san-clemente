@@ -13,9 +13,9 @@ import { NEGOCIO } from '../config/site';
   ogImagen="/og/inicio.jpg"
 >
   <Hero
-    foto={FOTOS.dunas}
+    foto={FOTOS.amanecer}
     titulo="Posada de 8 habitaciones en San Clemente"
-    bajada="A 80 metros de la playa. Desayuno casero de 8 a 11 y recepción hasta las 22."
+    bajada="A 80 metros de la playa, con el sol saliendo del mar. Abierta de octubre a abril, con desayuno casero."
   />
 
   <section class="section" id="visit" data-place="visit" aria-labelledby="visit-h">
@@ -36,8 +36,8 @@ import { NEGOCIO } from '../config/site';
             </div>
           </div>
           <ul class="visit__rows">
-            <li><span>Check-in y check-out</span><span>Desde las 14, hasta las 10</span></li>
-            <li><span>Cochera cubierta</span><span>6 lugares, a consultar</span></li>
+            <li><span>Temporada</span><span>{NEGOCIO.temporada}</span></li>
+            <li><span>Estadía mínima</span><span>{NEGOCIO.estadiaMinima}</span></li>
           </ul>
         </div>
         <div class="ph visit-photo span-6 start-7">
@@ -52,7 +52,7 @@ import { NEGOCIO } from '../config/site';
       <div class="grid ts">
         <div class="ts__text">
           <h2 id="hab-h">Habitaciones para 2 a 4 personas</h2>
-          <p>Tres tipos de habitación, todas con baño privado, calefacción y desayuno incluido.</p>
+          <p>Tres tipos de habitación, todas con baño privado, ventilador y desayuno incluido.</p>
           <ul class="rows">
             {HABITACIONES.map((h) => (
               <li><span class="rows__name">{h.nombre}</span><span class="rows__value">{h.datos.split(' · ')[0]}</span></li>
@@ -74,12 +74,12 @@ import { NEGOCIO } from '../config/site';
     <div class="wrap">
       <div class="head-row">
         <h2 id="des-h">Desayuno casero de 8 a 11</h2>
-        <p>Pan del día, granola hecha acá, fruta y café de filtro. Incluido en todas las tarifas. <a class="link" href="/habitaciones#incluye">Ver qué incluye</a></p>
+        <p>Pan del día, granola hecha acá, fruta de estación, jugo de naranja exprimido y café de filtro. Incluido en todas las tarifas. <a class="link" href="/habitaciones#incluye">Ver qué incluye</a></p>
       </div>
       <div class="grid trio">
         <div class="ph"><Foto foto={FOTOS.pan} sizes="(max-width: 639px) 100vw, (max-width: 1023px) 60vw, 486px" /></div>
         <div class="ph"><Foto foto={FOTOS.granola} sizes="(max-width: 639px) 50vw, (max-width: 1023px) 60vw, 384px" /></div>
-        <div class="ph"><Foto foto={FOTOS.lampara} sizes="(max-width: 639px) 50vw, (max-width: 1023px) 60vw, 384px" /></div>
+        <div class="ph"><Foto foto={FOTOS.desayunoJugo} sizes="(max-width: 639px) 50vw, (max-width: 1023px) 60vw, 720px" /></div>
       </div>
     </div>
   </section>

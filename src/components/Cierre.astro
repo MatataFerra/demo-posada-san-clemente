@@ -1,8 +1,8 @@
 ---
-import BotonWhatsApp from './BotonWhatsApp.astro';
+import ConsultaForm from './ConsultaForm.astro';
 import { NEGOCIO, DISENADOR, whatsapp, MENSAJES } from '../config/site';
-interface Props { mensaje?: string; }
-const { mensaje } = Astro.props;
+interface Props { habitacion?: string; }
+const { habitacion } = Astro.props;
 const year = 2026;
 ---
 <footer class="footer closing footer--visit" id="contacto" aria-labelledby="close-h">
@@ -11,9 +11,10 @@ const year = 2026;
       <div class="section-head--split">
         <div>
           <h2 id="close-h">Reservas por WhatsApp</h2>
-          <p class="t-lead">Contanos las fechas y cuántos son. Respondemos de 8 a 22.</p>
+          <p class="t-lead">Elegí las fechas y cuántos son: te abrimos WhatsApp con la consulta lista para mandar.</p>
+          <p class="t-small muted">Seña del 30% por transferencia. Cancelación sin cargo hasta 7 días antes.</p>
         </div>
-        <BotonWhatsApp mensaje={mensaje} />
+        <ConsultaForm habitacion={habitacion} />
       </div>
       <p class="close__word" aria-hidden="true">{NEGOCIO.nombre}</p>
     </div>

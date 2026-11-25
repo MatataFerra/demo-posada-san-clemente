@@ -18,6 +18,8 @@ export const NEGOCIO = {
   mapa: 'https://www.openstreetmap.org/search?query=San%20Clemente%20del%20Tuy%C3%BA',
   recepcion: '8 a 22',
   checkin: 'Check-in desde las 14, check-out hasta las 10',
+  temporada: 'De octubre a abril',
+  estadiaMinima: '3 noches en enero y febrero',
 };
 
 /** Texto del botón principal: el mismo en la barra, el hero, el cierre y la barra del celular. */

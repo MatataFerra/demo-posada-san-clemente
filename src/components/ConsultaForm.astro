@@ -1,0 +1,82 @@
+---
+/**
+ * Consulta de disponibilidad: fechas, personas y habitación arman el texto de WhatsApp.
+ * Sin JavaScript el formulario igual abre WhatsApp, con el mensaje general (action GET a wa.me).
+ */
+import { WHATSAPP_NUMERO, MENSAJES, NEGOCIO } from '../config/site';
+import { HABITACIONES } from '../data/habitaciones';
+interface Props { habitacion?: string; }
+const { habitacion = '' } = Astro.props;
+const capacidades = Object.fromEntries(HABITACIONES.map((h) => [h.slug, { nombre: h.nombre, capacidad: h.capacidad }]));
+---
+<form class="form consulta" id="consulta" action={`https://wa.me/${WHATSAPP_NUMERO}`} method="get" target="_blank"
+  aria-label="Consultar disponibilidad por WhatsApp" novalidate data-consulta data-habitaciones={JSON.stringify(capacidades)}>
+  <input type="hidden" name="text" value={MENSAJES.general} />
+  <label class="field" for="c-llegada">Llegada
+    <input type="date" id="c-llegada" required autocomplete="off" />
+  </label>
+  <label class="field" for="c-salida">Salida
+    <input type="date" id="c-salida" required autocomplete="off" />
+  </label>
+  <label class="field" for="c-personas">Personas
+    <select id="c-personas">
+      {[1, 2, 3, 4, 5].map((n) => <option value={n} selected={n === 2}>{n} {n === 1 ? 'persona' : 'personas'}</option>)}
+    </select>
+  </label>
+  <label class="field" for="c-hab">Habitación
+    <select id="c-hab">
+      <option value="">La que esté libre</option>
+      {HABITACIONES.map((h) => <option value={h.slug} selected={h.slug === habitacion}>{h.nombre.replace('Habitación ', '').replace(/^./, (c) => c.toUpperCase())}</option>)}
+    </select>
+  </label>
+  <p class="consulta__error" id="c-error" role="alert" hidden></p>
+  <div class="btn-row"><button class="btn btn--primary" type="submit">Enviar consulta por WhatsApp</button></div>
+  <p class="consulta__nota">Se abre WhatsApp con tu consulta armada. Respondemos de {NEGOCIO.recepcion} h.</p>
+</form>
+<script is:inline>
+(() => {
+  const f = document.querySelector('[data-consulta]');
+  if (!f) return;
+  const $ = (id) => f.querySelector('#' + id);
+  const ll = $('c-llegada'), sa = $('c-salida'), pe = $('c-personas'), ha = $('c-hab'), er = $('c-error');
+  const habs = JSON.parse(f.dataset.habitaciones);
+  const iso = (d) => new Date(d.getTime() - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+  const dia = (s) => new Date(s + 'T12:00:00');
+  const hoy = new Date(); ll.min = iso(hoy);
+  const mas = (s, n) => { const d = dia(s); d.setDate(d.getDate() + n); return iso(d); };
+  sa.min = mas(ll.min, 1);
+  ll.addEventListener('change', () => {
+    if (!ll.value) return;
+    sa.min = mas(ll.value, 1);
+    if (!sa.value || sa.value <= ll.value) sa.value = mas(ll.value, 3);
+  });
+  const fmt = (s) => { const d = dia(s); return d.getDate() + '/' + (d.getMonth() + 1); };
+  const error = (msg, campo) => {
+    er.textContent = msg; er.hidden = false;
+    [ll, sa, pe].forEach((c) => c.removeAttribute('aria-invalid'));
+    if (campo) { campo.setAttribute('aria-invalid', 'true'); campo.focus(); }
+  };
+  f.addEventListener('input', () => { er.hidden = true; [ll, sa, pe].forEach((c) => c.removeAttribute('aria-invalid')); });
+  f.addEventListener('submit', (e) => {
+    if (!ll.value) { e.preventDefault(); return error('Elegí la fecha de llegada.', ll); }
+    if (ll.value < ll.min) { e.preventDefault(); return error('La llegada no puede ser una fecha que ya pasó.', ll); }
+    if (!sa.value) { e.preventDefault(); return error('Elegí la fecha de salida.', sa); }
+    if (sa.value <= ll.value) { e.preventDefault(); return error('La salida tiene que ser después de la llegada.', sa); }
+    const noches = Math.round((dia(sa.value) - dia(ll.value)) / 864e5);
+    const verano = [0, 1].includes(dia(ll.value).getMonth());
+    if (verano && noches < 3) { e.preventDefault(); return error('En enero y febrero la estadía mínima es de 3 noches.', sa); }
+    const h = habs[ha.value]; const p = Number(pe.value);
+    if (h && p > h.capacidad) { e.preventDefault(); return error(`La ${h.nombre.replace('Habitación ', '').toLowerCase()} es para ${h.capacidad} personas como máximo. Para ${p}, elegí la familiar.`, pe); }
+    const cual = h ? ` en la ${h.nombre.replace('Habitación ', 'habitación ').toLowerCase()}` : '';
+    f.elements.text.value = `Hola, quiero consultar disponibilidad en Posada La Ría${cual}: del ${fmt(ll.value)} al ${fmt(sa.value)} (${noches} ${noches === 1 ? 'noche' : 'noches'}) para ${p} ${p === 1 ? 'persona' : 'personas'}.`;
+  });
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('[data-consulta-ir]');
+    if (!a) return;
+    e.preventDefault();
+    f.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
+    ll.focus({ preventScroll: true });
+    history.replaceState(null, '', '#consulta');
+  });
+})();
+</script>

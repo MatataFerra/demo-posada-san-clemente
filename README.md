@@ -26,7 +26,10 @@ Sitio demo de portfolio: una posada **ficticia** frente al mar en San Clemente d
 Todo sale de `src/config/site.ts`:
 
 - `WHATSAPP_NUMERO`: número de **prueba** (`5490000000000`). Cambialo y se actualizan todos los botones.
-- `MENSAJES`: textos precargados según la página o la habitación (con `__` para fechas y personas).
+- `MENSAJES`: textos precargados. `general` es el respaldo del formulario cuando no hay JavaScript.
+- `NEGOCIO.temporada` y `NEGOCIO.estadiaMinima`: temporada (octubre a abril) y mínimo de noches en verano. Son datos inventados para la demo.
+
+Todos los botones "Consultar disponibilidad" llevan al formulario del cierre (`src/components/ConsultaForm.astro`). Ahí se eligen llegada, salida, personas y habitación, y se abre WhatsApp con el mensaje armado. El formulario valida fechas pasadas, salida antes de llegada, mínimo de 3 noches en enero y febrero, y capacidad de cada habitación (`capacidad` en `src/data/habitaciones.ts`).
 - `DISENADOR`: contacto de la franja "Sitio de demostración" del pie.
 
 ## Desarrollo

@@ -1,9 +1,9 @@
 ---
 import Foto from './Foto.astro';
-import BotonWhatsApp from './BotonWhatsApp.astro';
+import BotonConsulta from './BotonConsulta.astro';
 import type { Foto as F } from '../data/fotos';
-interface Props { foto: F; titulo: string; bajada: string; mensaje?: string; }
-const { foto, titulo, bajada, mensaje } = Astro.props;
+interface Props { foto: F; titulo: string; bajada: string; }
+const { foto, titulo, bajada } = Astro.props;
 ---
 <section class="hero hero--place" aria-labelledby="hero-h">
   <Foto foto={foto} class="hero__bg" sizes="100vw" eager />
@@ -11,7 +11,7 @@ const { foto, titulo, bajada, mensaje } = Astro.props;
     <div class="hero__text">
       <h1 id="hero-h">{titulo}</h1>
       <p class="hero__lead">{bajada}</p>
-      <div class="btn-row"><BotonWhatsApp mensaje={mensaje} /></div>
+      <div class="btn-row"><BotonConsulta /></div>
     </div>
   </div></div>
 </section>

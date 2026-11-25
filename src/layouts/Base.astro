@@ -11,16 +11,16 @@ import '../styles/page.css';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Cierre from '../components/Cierre.astro';
-import BotonWhatsApp from '../components/BotonWhatsApp.astro';
+import BotonConsulta from '../components/BotonConsulta.astro';
 
 interface Props {
   titulo: string;
   descripcion: string;
   actual: 'inicio' | 'habitaciones' | 'zona';
   ogImagen: string;
-  mensaje?: string;
+  habitacion?: string; // slug: preselecciona la habitación en el formulario de consulta
 }
-const { titulo, descripcion, actual, ogImagen, mensaje } = Astro.props;
+const { titulo, descripcion, actual, ogImagen, habitacion } = Astro.props;
 const url = new URL(Astro.url.pathname, Astro.site);
 const og = new URL(ogImagen, Astro.site);
 ---
@@ -57,9 +57,9 @@ const og = new URL(ogImagen, Astro.site);
 <main id="contenido">
   <slot />
 </main>
-<Cierre mensaje={mensaje} />
+<Cierre habitacion={habitacion} />
 <nav class="actionbar" aria-label="Acciones rápidas">
-  <BotonWhatsApp mensaje={mensaje} flecha={false} />
+  <BotonConsulta flecha={false} />
 </nav>
 <script type="module" src="/assets/system.js" is:inline></script>
 <script type="module" src="/assets/motion/motion.js" is:inline></script>
